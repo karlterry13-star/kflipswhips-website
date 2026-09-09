@@ -1,0 +1,9 @@
+{
+  "name": "kflipswhips-crm",
+  "version": "1.0.0",
+  "private": true,
+  "description": "KFlipsWhips public site + CRM backend (Netlify Functions + Supabase)",
+  "dependencies": {
+    "@supabase/supabase-js": "^2.45.4"
+  }
+}
