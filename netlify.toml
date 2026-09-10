@@ -2,7 +2,7 @@
   publish = "public"
   functions = "netlify/functions"
   command = "echo 'No build step needed — static site + functions.'"
-
+SECRETS_SCAN_OMIT_KEYS = "SUPABASE_URL"
 # Friendly URL for the public form to call
 [[redirects]]
   from = "/api/*"
