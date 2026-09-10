@@ -30,7 +30,7 @@ exports.handler = async (event) => {
     phone: (body.phone || '').trim() || null,
     vehicle_interest_raw: (body.vehicleInterest || '').trim() || null,
     budget: (body.budget || '').trim() || null,
-    status: body.status || 'New Lead',
+   status: body.status || 'New',
     lead_source: body.source || 'Manual / Staff entry',
     next_follow_up: body.nextFollowUp || null,
     message: (body.notes || '').trim() || null,
