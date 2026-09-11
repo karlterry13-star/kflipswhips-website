@@ -345,6 +345,72 @@
             </select>
           </div>
         </div>
+        <div class="field">
+          <label for="tradeIn">Do you have a vehicle now to trade in? (non-working vehicles qualify too)</label>
+          <select id="tradeIn">
+            <option>Yes</option>
+            <option>No</option>
+          </select>
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label for="creditRange">Estimated credit score</label>
+            <select id="creditRange">
+              <option>800 - 850 (Excellent)</option>
+              <option>740 - 799 (Very Good)</option>
+              <option>670 - 739 (Good)</option>
+              <option>600 - 669 (Fair)</option>
+              <option>551 - 599 (Bad)</option>
+              <option>Below 550 (Poor)</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="paymentRange">Monthly payment budget</label>
+            <select id="paymentRange">
+              <option>$300–$400</option>
+              <option>$400–$500</option>
+              <option>$500–$600</option>
+              <option>$600–$700</option>
+              <option>$700–$800</option>
+              <option>$800+</option>
+            </select>
+          </div>
+        </div>
+        <div class="field">
+          <label for="timeline">How soon would you like to get this done?</label>
+          <select id="timeline">
+            <option>Today</option>
+            <option>Within 24 hours</option>
+            <option>Within 7 days</option>
+            <option>Within 30 days</option>
+            <option>Over 30 days</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="priorFinancing">Have you either leased or financed a car before? Or are you a first time car buyer?</label>
+          <select id="priorFinancing">
+            <option>Not a first time car buyer</option>
+            <option>First time car buyer</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="repos">Any previous or active auto repossessions/charge-offs? (not a deal breaker)</label>
+          <select id="repos">
+            <option>No repos or charge-offs</option>
+            <option>Yes</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="coApplicant">Do you have a co-applicant willing to help you get a better deal?</label>
+          <select id="coApplicant">
+            <option>No, I don't have one</option>
+            <option>Yes, I may have a co-applicant</option>
+          </select>
+        </div>
+        <div class="field-row">
+          <div class="field"><label for="city">City</label><input id="city" type="text" placeholder="e.g. Miramar"></div>
+          <div class="field"><label for="county">County</label><input id="county" type="text" placeholder="e.g. Broward"></div>
+        </div>
         <button class="submit-btn" type="submit">Start my search</button>
         <div class="form-note">No spam, no obligation. Just a conversation about your next car.</div>
       </form>
@@ -381,13 +447,27 @@ document.getElementById('leadForm').addEventListener('submit', async function(e)
   const submitBtn = this.querySelector('.submit-btn');
   if(submitBtn){ submitBtn.disabled = true; submitBtn.textContent = 'Sending...'; }
 
+  const creditRange = document.getElementById('creditRange').value;
+  const paymentRange = document.getElementById('paymentRange').value;
+  const tradeIn = document.getElementById('tradeIn').value;
+  const timeline = document.getElementById('timeline').value;
+  const priorFinancing = document.getElementById('priorFinancing').value;
+  const repos = document.getElementById('repos').value;
+  const coApplicant = document.getElementById('coApplicant').value;
+  const city = document.getElementById('city').value.trim();
+  const county = document.getElementById('county').value.trim();
+
+  const extraDetails = 'Trade-in: ' + tradeIn + '\nCredit score: ' + creditRange + '\nMonthly payment budget: ' + paymentRange +
+    '\nTimeline: ' + timeline + '\nPrior financing: ' + priorFinancing + '\nRepos/charge-offs: ' + repos +
+    '\nCo-applicant: ' + coApplicant + '\nLocation: ' + city + ', ' + county;
+
   const payload = {
     name: document.getElementById('name').value.trim(),
     phone: document.getElementById('phone').value.trim(),
     email: document.getElementById('email').value.trim(),
     vehicleInterest: document.getElementById('vehicle').value.trim(),
     budget: document.getElementById('budget').value,
-    message: '',
+    message: extraDetails,
     lead_source: 'Website',
     company_website: document.getElementById('company_website').value, // honeypot
     ..._utm
