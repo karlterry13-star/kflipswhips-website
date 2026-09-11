@@ -545,6 +545,11 @@ function renderDetail(lead, notes){
     </div>
 
     <div class="detail-section">
+      <h4>Application details</h4>
+      <div style="font-size:13.5px;white-space:pre-line;background:var(--bg-alt);border-radius:6px;padding:12px 14px;">${escapeHtml(lead.message || 'No additional details submitted.')}</div>
+    </div>
+
+    <div class="detail-section">
       <h4>Status & follow-up</h4>
       <div class="field-grid">
         <div class="field"><label>Status</label>
